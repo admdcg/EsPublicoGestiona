@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsPublicGestionaCli", "EsPublicGestionaCli\EsPublicGestionaCli.csproj", "{BBBDD997-7949-4474-872F-4229B8CFDC1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsPublicGestionaLib", "EsPublicGestionaLib\EsPublicGestionaLib.csproj", "{8C2702C6-7D48-433C-95B7-8A83A68D8372}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBBDD997-7949-4474-872F-4229B8CFDC1B}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{BBBDD997-7949-4474-872F-4229B8CFDC1B}.Debug|Any CPU.Build.0 = Debug|x64
+		{BBBDD997-7949-4474-872F-4229B8CFDC1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBBDD997-7949-4474-872F-4229B8CFDC1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C2702C6-7D48-433C-95B7-8A83A68D8372}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{8C2702C6-7D48-433C-95B7-8A83A68D8372}.Debug|Any CPU.Build.0 = Debug|x64
+		{8C2702C6-7D48-433C-95B7-8A83A68D8372}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C2702C6-7D48-433C-95B7-8A83A68D8372}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C6221D2-6F4E-453E-9C7F-1F1D0C379695}
+	EndGlobalSection
+EndGlobal
