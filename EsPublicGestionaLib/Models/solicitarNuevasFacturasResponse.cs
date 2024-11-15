@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace EsPublicGestionaLib.SolicitarNuevasFacturasResponse
+namespace EsPublicGestionaLib.Models
 {
 
     // NOTA: El código generado puede requerir, como mínimo, .NET Framework 4.5 o .NET Core/Standard 2.0.
@@ -16,10 +16,10 @@ namespace EsPublicGestionaLib.SolicitarNuevasFacturasResponse
     public partial class solicitarNuevasFacturasResponse
     {
         
-        private @return returnField;
+        private solicitarNuevasFacturasResponseReturn returnField;
         
         [XmlElement("return")]
-        public @return @return
+        public solicitarNuevasFacturasResponseReturn @return
         {
             get
             {
@@ -37,14 +37,10 @@ namespace EsPublicGestionaLib.SolicitarNuevasFacturasResponse
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     //[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-    public partial class @return
+    public partial class solicitarNuevasFacturasResponseReturn : ReturnResultado
     {
-
         private returnSolicitarNuevasFacturas[] facturasField;
-
-        private returnResultado resultadoField;
-
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlArrayItemAttribute("solicitarNuevasFacturas")]
         public returnSolicitarNuevasFacturas[] facturas
         {
@@ -55,19 +51,6 @@ namespace EsPublicGestionaLib.SolicitarNuevasFacturasResponse
             set
             {
                 this.facturasField = value;
-            }
-        }
-
-        /// <remarks/>
-        public returnResultado resultado
-        {
-            get
-            {
-                return this.resultadoField;
-            }
-            set
-            {
-                this.resultadoField = value;
             }
         }
     }
@@ -154,44 +137,4 @@ namespace EsPublicGestionaLib.SolicitarNuevasFacturasResponse
             }
         }
     }
-
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class returnResultado
-    {
-
-        private byte codigoField;
-
-        private string descripcionField;
-
-        /// <remarks/>
-        public byte codigo
-        {
-            get
-            {
-                return this.codigoField;
-            }
-            set
-            {
-                this.codigoField = value;
-            }
-        }
-
-        /// <remarks/>
-        public string descripcion
-        {
-            get
-            {
-                return this.descripcionField;
-            }
-            set
-            {
-                this.descripcionField = value;
-            }
-        }
-    }
-
-
 }

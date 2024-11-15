@@ -6,10 +6,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using static System.Collections.Specialized.BitVector32;
+using EsPublicGestionaLib.Models;
 
 namespace EsPublicGestionaLib
 {
@@ -21,23 +23,52 @@ namespace EsPublicGestionaLib
             ConfigSettings = configSettings;
         }
 
-        public SolicitarNuevasFacturasResponse.solicitarNuevasFacturasResponse SolicitarNuevasFacturas(string factura)
+        public solicitarNuevasFacturasResponse SolicitarNuevasFacturas(string oficinaContable)
         {            
-            var content = GetSoapRequestWithSignXml(ConfigSettings.CertificatePath, ConfigSettings.CertificatePassword, 
-                "solicitarNuevasFacturas", "oficinaContable", factura);
+            var content = GetSoapRequestWithSignXml(ConfigSettings.CertificatePath, ConfigSettings.CertificatePassword, "solicitarNuevasFacturas", 
+                new Dictionary<string, string> { { "oficinaContable", oficinaContable } } );
             var response = HttpPost(ConfigSettings.EndpointUrl, content);
-            var solicitarNuevasFacturasResponse = ProcesaRespuesta<SolicitarNuevasFacturasResponse.solicitarNuevasFacturasResponse>(response);
+            var solicitarNuevasFacturasResponse = ProcesaRespuesta<solicitarNuevasFacturasResponse>(response);
             return solicitarNuevasFacturasResponse;
         }
-        public DescargarFacturaResponse.descargarFacturaResponse DescargarFactura(string NumeroRegistro)
+        public descargarFacturaResponse DescargarFactura(string numeroRegistro)
         {   
             var content = GetSoapRequestWithSignXml(ConfigSettings.CertificatePath, ConfigSettings.CertificatePassword,
-                "descargarFactura", "numeroRegistro", NumeroRegistro);
+                "descargarFactura", new Dictionary<string, string> { { "numeroRegistro", numeroRegistro } });
             var response = HttpPost(ConfigSettings.EndpointUrl, content);
-            var descargarFacturaResponse = ProcesaRespuesta<DescargarFacturaResponse.descargarFacturaResponse>(response);
+            var descargarFacturaResponse = ProcesaRespuesta<descargarFacturaResponse>(response);
             return descargarFacturaResponse;
         }
+        public confirmarDescargaFacturaResponse ConfirmarDescargaFactura(string oficinaContable, string numeroRegistro, string codigoRCF)
+        {
+            var content = GetSoapRequestWithSignXml(ConfigSettings.CertificatePath, ConfigSettings.CertificatePassword, 
+                "confirmarDescargaFactura", new Dictionary<string, string> 
+                { 
+                    { "oficinaContable", oficinaContable },
+                    { "numeroRegistro", numeroRegistro },
+                    { "codigoRCF", codigoRCF }
+                });
+            var response = HttpPost(ConfigSettings.EndpointUrl, content);
+            var solicitarNuevasFacturasResponse = ProcesaRespuesta<confirmarDescargaFacturaResponse>(response);
+            return solicitarNuevasFacturasResponse;
+        }
+        public cambiarEstadoFacturaResponse CambiarEstadoFactura(string oficinaContable, string numeroRegistro, string codigo, string comentarios)
+        {
+            var content = GetSoapRequestWithSignXml(ConfigSettings.CertificatePath, ConfigSettings.CertificatePassword, 
+                "cambiarEstadoFactura", new Dictionary<string, string>
+                {
+                    { "oficinaContable", oficinaContable },
+                    { "numeroRegistro", numeroRegistro },
+                    { "codigo", codigo },
+                    { "comentarios", comentarios }
+                });
+            var response = HttpPost(ConfigSettings.EndpointUrl, content);
+            var solicitarNuevasFacturasResponse = ProcesaRespuesta<cambiarEstadoFacturaResponse>(response);
+            return solicitarNuevasFacturasResponse;
+        }
+
         private static string HttpPost(String endpointUrl, String content)
+
         {            
             //var url = "http://econtabilidad-pre.sedelectronica.es/conta2rlf/services/FacturaSRCFWebServiceProxyService/";
             var client = new HttpClient();            
@@ -69,7 +100,7 @@ namespace EsPublicGestionaLib
             var objectResponse = SerializationUtils.XmlDeserializeFromString<T>(responseClear.OuterXml);
             return objectResponse;
         }
-        private static string GetSoapRequestWithSignXml(string certificatePath, string certificatePassword, string action, string parameter, string value)
+        private static string GetSoapRequestWithSignXml(string certificatePath, string certificatePassword, string action, Dictionary<string, string> parameters)
         {
             //UnlockChilkat();
             bool success = true;
@@ -86,8 +117,11 @@ namespace EsPublicGestionaLib
             xmlToSign.UpdateAttrAt("soapenv:Body", true, "xmlns:wsu", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd");
 
             xmlToSign.UpdateAttrAt($"soapenv:Body|web:{action}", true, "soapenv:encodingStyle", "http://schemas.xmlsoap.org/soap/encoding/");
-            xmlToSign.UpdateAttrAt($"soapenv:Body|web:{action}|{parameter}", true, "xsi:type", "xsd:string");
-            xmlToSign.UpdateChildContent($"soapenv:Body|web:{action}|{parameter}", value);
+            foreach(var pairValue in parameters)
+            {
+                xmlToSign.UpdateAttrAt($"soapenv:Body|web:{action}|{pairValue.Key}", true, "xsi:type", "xsd:string");
+                xmlToSign.UpdateChildContent($"soapenv:Body|web:{action}|{pairValue.Key}", pairValue.Value);
+            }
 
             Chilkat.XmlDSigGen gen = new Chilkat.XmlDSigGen();
             gen.SigLocation = "soapenv:Envelope|soapenv:Header|wsse:Security";

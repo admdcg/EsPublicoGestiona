@@ -72,7 +72,10 @@
     <Compile Include="Helpers\ExceptionHelper.cs" />
     <Compile Include="Helpers\HttpClienteManager.cs" />
     <Compile Include="Helpers\SerializationUtils.cs" />
+    <Compile Include="Models\cambiarEstadoFacturaResponse.cs" />
+    <Compile Include="Models\confirmarDescargaFacturaResponse.cs" />
     <Compile Include="Models\descargarFacturasResponse.cs" />
+    <Compile Include="Models\returnResultado.cs" />
     <Compile Include="Models\solicitarNuevasFacturasResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

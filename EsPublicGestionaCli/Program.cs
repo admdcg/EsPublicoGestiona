@@ -1,9 +1,8 @@
 ﻿using EsPublicGestionaLib;
-using EsPublicGestionaLib.DescargarFacturaResponse;
 using EsPublicGestionaLib.Helpers;
-using EsPublicGestionaLib.SolicitarNuevasFacturasResponse;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +31,9 @@ namespace EsPublicGestionaCli
                     Console.WriteLine($"Nñumero de registro {i}.: {factura.numeroRegistro} - {factura.fechaHoraRegistro}");
                 }
                 var selected = Convert.ToInt32(Console.ReadLine());
-                var numeroRegisto = solicitarNuevasFacturasResponse.@return.facturas[selected].numeroRegistro;
+                var facturaSelected = solicitarNuevasFacturasResponse.@return.facturas[selected];
+                var numeroRegisto = facturaSelected.numeroRegistro;
+                var oficinaContable = facturaSelected.oficinaContable;
                 var descargarFacturaResponse = manager.DescargarFactura(numeroRegisto);                
                 if (descargarFacturaResponse.@return.resultado.codigo == 0)
                 {
@@ -53,6 +54,8 @@ namespace EsPublicGestionaCli
                     System.Diagnostics.Process.Start(filename);
                 }
                 
+                var cambiarEstadoFacturaResponse = manager.CambiarEstadoFactura(oficinaContable, numeroRegisto, "1200", "Pruebas desde conexion WebServices.");
+                Debug.WriteLine(cambiarEstadoFacturaResponse.@return.resultado.descripcion);
             }
         }
     }

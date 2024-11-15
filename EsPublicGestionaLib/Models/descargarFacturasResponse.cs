@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace EsPublicGestionaLib.DescargarFacturaResponse
+namespace EsPublicGestionaLib.Models
 {
 
     // NOTA: El código generado puede requerir, como mínimo, .NET Framework 4.5 o .NET Core/Standard 2.0.
@@ -14,14 +14,12 @@ namespace EsPublicGestionaLib.DescargarFacturaResponse
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     //[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "https://webservice.face.gob.es")]
     
-    public partial class descargarFacturaResponse
+    public class descargarFacturaResponse
     {
-
-        private @return returnField;
-
-        /// <remarks/>
+        private descargarFacturaResponseReturn returnField;
+        
         [XmlElement("return")]
-        public @return @return
+        public descargarFacturaResponseReturn @return
         {
             get
             {
@@ -39,15 +37,10 @@ namespace EsPublicGestionaLib.DescargarFacturaResponse
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     //[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-    public partial class @return
+    public class descargarFacturaResponseReturn : ReturnResultado
     {
-
-        private returnFactura facturaField;
-
-        private returnResultado resultadoField;
-
-        /// <remarks/>
-        public returnFactura factura
+        private descargarFacturaResponseReturnFactura facturaField;
+        public descargarFacturaResponseReturnFactura factura
         {
             get
             {
@@ -58,26 +51,13 @@ namespace EsPublicGestionaLib.DescargarFacturaResponse
                 this.facturaField = value;
             }
         }
-
-        /// <remarks/>
-        public returnResultado resultado
-        {
-            get
-            {
-                return this.resultadoField;
-            }
-            set
-            {
-                this.resultadoField = value;
-            }
-        }
     }
 
     /// <remarks/>
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class returnFactura
+    public class descargarFacturaResponseReturnFactura
     {
 
         private string mimeField;
@@ -253,46 +233,5 @@ namespace EsPublicGestionaLib.DescargarFacturaResponse
                 this.nombreField = value;
             }
         }
-    }
-
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class returnResultado
-    {
-
-        private byte codigoField;
-
-        private string descripcionField;
-
-        /// <remarks/>
-        public byte codigo
-        {
-            get
-            {
-                return this.codigoField;
-            }
-            set
-            {
-                this.codigoField = value;
-            }
-        }
-
-        /// <remarks/>
-        public string descripcion
-        {
-            get
-            {
-                return this.descripcionField;
-            }
-            set
-            {
-                this.descripcionField = value;
-            }
-        }
-    }
-
-
-
+    }    
 }
