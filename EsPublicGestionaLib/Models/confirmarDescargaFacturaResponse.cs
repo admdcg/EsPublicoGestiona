@@ -36,8 +36,7 @@ namespace EsPublicGestionaLib.Models
     /// <remarks/>
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]    
     public class confirmarDescargaFacturaResponseReturn : ReturnResultado
     {
         private confirmarDescargaFacturaResponseReturnFactura facturaField;        
