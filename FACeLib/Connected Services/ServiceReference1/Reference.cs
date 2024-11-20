@@ -345,7 +345,6 @@ namespace FACeLib.ServiceReference1 {
         
         /// <remarks/>
         [System.Xml.Serialization.SoapElementAttribute(IsNullable=true)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("solicitarNuevasFacturas")]
         public SolicitarNuevasFacturas[] facturas {
             get {
                 return this.facturasField;
