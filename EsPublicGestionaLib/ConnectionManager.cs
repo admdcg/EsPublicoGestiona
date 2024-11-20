@@ -102,9 +102,7 @@ namespace EsPublicGestionaLib
             var xmlResponse = new XmlDocument();
             xmlResponse.LoadXml(response);
 
-            XmlElement docRoot = xmlResponse.DocumentElement;
             // Crear un XmlNamespaceManager para manejar los namespaces de la respuesta
-
             XmlNamespaceManager namespaceManager = new XmlNamespaceManager(xmlResponse.NameTable);
             namespaceManager.AddNamespace("soap", "http://schemas.xmlsoap.org/soap/envelope/");
 
@@ -116,6 +114,7 @@ namespace EsPublicGestionaLib
             }
             var shortResponse = new XmlDocument();
             shortResponse.LoadXml(firstChildNode.OuterXml);
+
             var responseClear = shortResponse.RemoveAllNamespaces();
             var objectResponse = SerializationUtils.XmlDeserializeFromString<T>(responseClear.OuterXml);
             return objectResponse;

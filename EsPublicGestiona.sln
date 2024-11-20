@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsPublicGestionaCli", "EsPu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsPublicGestionaLib", "EsPublicGestionaLib\EsPublicGestionaLib.csproj", "{8C2702C6-7D48-433C-95B7-8A83A68D8372}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACeLib", "FACeLib\FACeLib.csproj", "{B9DD33C1-3790-4923-AA28-77CC12FA1B9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACeCli", "FACeCli\FACeCli.csproj", "{39F35C40-61D8-474D-9A3E-E041C2743762}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{8C2702C6-7D48-433C-95B7-8A83A68D8372}.Debug|Any CPU.Build.0 = Debug|x64
 		{8C2702C6-7D48-433C-95B7-8A83A68D8372}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C2702C6-7D48-433C-95B7-8A83A68D8372}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9DD33C1-3790-4923-AA28-77CC12FA1B9C}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{B9DD33C1-3790-4923-AA28-77CC12FA1B9C}.Debug|Any CPU.Build.0 = Debug|x64
+		{B9DD33C1-3790-4923-AA28-77CC12FA1B9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9DD33C1-3790-4923-AA28-77CC12FA1B9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39F35C40-61D8-474D-9A3E-E041C2743762}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{39F35C40-61D8-474D-9A3E-E041C2743762}.Debug|Any CPU.Build.0 = Debug|x64
+		{39F35C40-61D8-474D-9A3E-E041C2743762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39F35C40-61D8-474D-9A3E-E041C2743762}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:impl="https://webservice.face.gob.es" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:intf="https://webservice.face.gob.es" targetNamespace="https://webservice.face.gob.es" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="https://webservice.face.gob.es">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:complexType name="Resultado">
+        <xsd:sequence>
+          <xsd:element name="codigo" type="xsd:string" />
+          <xsd:element name="descripcion" type="xsd:string" />
+          <xsd:element name="codigoSeguimiento" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SolicitarNuevasFacturas">
+        <xsd:sequence>
+          <xsd:element name="numeroRegistro" type="xsd:string" />
+          <xsd:element name="oficinaContable" type="xsd:string" />
+          <xsd:element name="organoGestor" type="xsd:string" />
+          <xsd:element name="unidadTramitadora" type="xsd:string" />
+          <xsd:element name="fechaHoraRegistro" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfSolicitarNuevasFacturas">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="intf:SolicitarNuevasFacturas[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="SolicitarNuevasFacturasResponse">
+        <xsd:sequence>
+          <xsd:element name="resultado" type="intf:Resultado" />
+          <xsd:element name="facturas" nillable="true" type="intf:ArrayOfSolicitarNuevasFacturas" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SolicitarNuevasAnulaciones">
+        <xsd:sequence>
+          <xsd:element name="numeroRegistro" type="xsd:string" />
+          <xsd:element name="oficinaContable" type="xsd:string" />
+          <xsd:element name="organoGestor" type="xsd:string" />
+          <xsd:element name="unidadTramitadora" type="xsd:string" />
+          <xsd:element name="fechaHoraSolicitudAnulacion" type="xsd:string" />
+          <xsd:element name="motivo" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfSolicitarNuevasAnulaciones">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="intf:SolicitarNuevasAnulaciones[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="SolicitarNuevasAnulacionesResponse">
+        <xsd:sequence>
+          <xsd:element name="resultado" type="intf:Resultado" />
+          <xsd:element name="facturas" nillable="true" type="intf:ArrayOfSolicitarNuevasAnulaciones" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AnexoFile">
+        <xsd:sequence>
+          <xsd:element name="anexo" type="xsd:string" />
+          <xsd:element name="nombre" type="xsd:string" />
+          <xsd:element name="mime" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfAnexoFile">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="intf:AnexoFile[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="DescargaFactura">
+        <xsd:sequence>
+          <xsd:element name="numero" type="xsd:string" />
+          <xsd:element name="serie" type="xsd:string" />
+          <xsd:element name="importe" type="xsd:string" />
+          <xsd:element name="proveedor" type="xsd:string" />
+          <xsd:element name="nombre" type="xsd:string" />
+          <xsd:element name="factura" type="xsd:string" />
+          <xsd:element name="mime" type="xsd:string" />
+          <xsd:element name="anexos" nillable="true" type="intf:ArrayOfAnexoFile" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DescargarFacturaResponse">
+        <xsd:sequence>
+          <xsd:element name="resultado" type="intf:Resultado" />
+          <xsd:element name="factura" nillable="true" type="intf:DescargaFactura" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConfirmaDescargaFactura">
+        <xsd:sequence>
+          <xsd:element name="numeroRegistro" type="xsd:string" />
+          <xsd:element name="oficinaContable" type="xsd:string" />
+          <xsd:element name="codigo" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConfirmarDescargaFacturaResponse">
+        <xsd:sequence>
+          <xsd:element name="resultado" type="intf:Resultado" />
+          <xsd:element name="factura" nillable="true" type="intf:ConfirmaDescargaFactura" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EstadoFactura">
+        <xsd:sequence>
+          <xsd:element name="numeroRegistro" type="xsd:string" />
+          <xsd:element name="codigo" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CambiarEstadoFacturaResponse">
+        <xsd:sequence>
+          <xsd:element name="resultado" type="intf:Resultado" />
+          <xsd:element name="factura" nillable="true" type="intf:EstadoFactura" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Estado">
+        <xsd:sequence>
+          <xsd:element name="flujo" type="xsd:string" />
+          <xsd:element name="nombre" type="xsd:string" />
+          <xsd:element name="nombrePublico" type="xsd:string" />
+          <xsd:element name="codigo" type="xsd:string" />
+          <xsd:element name="descripcion" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfEstado">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="intf:Estado[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultaEstadosResponse">
+        <xsd:sequence>
+          <xsd:element name="resultado" type="intf:Resultado" />
+          <xsd:element name="estados" nillable="true" type="intf:ArrayOfEstado" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="UnidadDir3">
+        <xsd:sequence>
+          <xsd:element name="nombre" type="xsd:string" />
+          <xsd:element name="codigo" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="OGUTOC">
+        <xsd:sequence>
+          <xsd:element name="organoGestor" type="intf:UnidadDir3" />
+          <xsd:element name="unidadTramitadora" type="intf:UnidadDir3" />
+          <xsd:element name="oficinaContable" type="intf:UnidadDir3" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfOGUTOC">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="intf:OGUTOC[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarUnidadesResponse">
+        <xsd:sequence>
+          <xsd:element name="resultado" type="intf:Resultado" />
+          <xsd:element name="relaciones" nillable="true" type="intf:ArrayOfOGUTOC" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GestionarSolicitudAnulacionFactura">
+        <xsd:sequence>
+          <xsd:element name="numeroRegistro" type="xsd:string" />
+          <xsd:element name="codigo" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GestionarSolicitudAnulacionFacturaResponse">
+        <xsd:sequence>
+          <xsd:element name="resultado" type="intf:Resultado" />
+          <xsd:element name="factura" nillable="true" type="intf:GestionarSolicitudAnulacionFactura" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarEstadoFactura">
+        <xsd:sequence>
+          <xsd:element name="codigo" type="xsd:string" />
+          <xsd:element name="descripcion" type="xsd:string" />
+          <xsd:element name="motivo" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarFactura">
+        <xsd:sequence>
+          <xsd:element name="numeroRegistro" type="xsd:string" />
+          <xsd:element name="tramitacion" type="intf:ConsultarEstadoFactura" />
+          <xsd:element name="anulacion" type="intf:ConsultarEstadoFactura" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarFacturaResponse">
+        <xsd:sequence>
+          <xsd:element name="resultado" type="intf:Resultado" />
+          <xsd:element name="factura" nillable="true" type="intf:ConsultarFactura" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOf_xsd_anyType">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="xsd:anyType[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="GestionarSolicitudAnulacionListadoFacturas">
+        <xsd:sequence>
+          <xsd:element name="codigo" type="xsd:string" />
+          <xsd:element name="descripcion" type="xsd:string" />
+          <xsd:element name="factura" nillable="true" type="intf:GestionarSolicitudAnulacionFactura" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfGestionarSolicitudAnulacionListadoFacturas">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="intf:GestionarSolicitudAnulacionListadoFacturas[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="GestionarSolicitudAnulacionListadoFacturasRequest">
+        <xsd:sequence>
+          <xsd:element name="oficinaContable" type="xsd:string" />
+          <xsd:element name="numeroRegistro" type="xsd:string" />
+          <xsd:element name="codigo" type="xsd:string" />
+          <xsd:element name="comentarios" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfGestionarSolicitudAnulacionListadoFacturasRequest">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="intf:GestionarSolicitudAnulacionListadoFacturasRequest[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarListadoFacturas">
+        <xsd:sequence>
+          <xsd:element name="codigo" type="xsd:string" />
+          <xsd:element name="descripcion" type="xsd:string" />
+          <xsd:element name="factura" nillable="true" type="intf:ConsultarFactura" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfConsultarListadoFacturasResponse">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="intf:ConsultarListadoFacturas[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="CambiarEstadoListadoFacturasRequest">
+        <xsd:sequence>
+          <xsd:element name="oficinaContable" type="xsd:string" />
+          <xsd:element name="numeroRegistro" type="xsd:string" />
+          <xsd:element name="codigo" type="xsd:string" />
+          <xsd:element name="comentarios" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfCambiarEstadoListadoFacturaRequest">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="intf:CambiarEstadoListadoFacturasRequest[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="CambiarEstadoListadoFacturas">
+        <xsd:sequence>
+          <xsd:element name="codigo" type="xsd:string" />
+          <xsd:element name="descripcion" type="xsd:string" />
+          <xsd:element name="factura" nillable="true" type="intf:EstadoFactura" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfCambiarEstadoListadoFacturas">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="intf:CambiarEstadoListadoFacturas[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarListadoFacturasResponse">
+        <xsd:sequence>
+          <xsd:element name="resultado" type="intf:Resultado" />
+          <xsd:element name="facturas" nillable="true" type="intf:ArrayOfConsultarListadoFacturasResponse" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CambiarEstadoListadoFacturasResponse">
+        <xsd:sequence>
+          <xsd:element name="resultado" type="intf:Resultado" />
+          <xsd:element name="facturas" nillable="true" type="intf:ArrayOfCambiarEstadoListadoFacturas" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GestionarSolicitudAnulacionListadoFacturasResponse">
+        <xsd:sequence>
+          <xsd:element name="resultado" type="intf:Resultado" />
+          <xsd:element name="facturas" nillable="true" type="intf:ArrayOfGestionarSolicitudAnulacionListadoFacturas" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NotificaFacturaRequest">
+        <xsd:sequence>
+          <xsd:element name="numeroRegistro" type="xsd:string" />
+          <xsd:element name="fechaRegistro" type="xsd:dateTime" />
+          <xsd:element name="factura" type="xsd:string" />
+          <xsd:element name="organoGestor" type="xsd:string" />
+          <xsd:element name="unidadTramitadora" type="xsd:string" />
+          <xsd:element name="oficinaContable" type="xsd:string" />
+          <xsd:element name="codigoRCF" type="xsd:string" />
+          <xsd:element name="estado" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NotificaFacturaInfo">
+        <xsd:sequence>
+          <xsd:element name="numeroRegistro" type="xsd:string" />
+          <xsd:element name="fechaRegistro" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NotificaFacturaResponse">
+        <xsd:sequence>
+          <xsd:element name="resultado" type="intf:Resultado" />
+          <xsd:element name="facturas" nillable="true" type="intf:NotificaFacturaInfo" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="tipoPersona">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="J" />
+          <xsd:enumeration value="F" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="DatosPersonales1">
+        <xsd:sequence>
+          <xsd:element name="tipo" type="intf:tipoPersona" />
+          <xsd:element name="nombreRazonSocial" type="xsd:string" />
+          <xsd:element name="apellido1" nillable="true" type="xsd:string" />
+          <xsd:element name="apellido2" nillable="true" type="xsd:string" />
+          <xsd:element name="documentoNacional" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="notificaFacturaNoElectronicaRequest">
+        <xsd:sequence>
+          <xsd:element name="numeroRegistro" type="xsd:string" />
+          <xsd:element name="fechaRegistro" type="xsd:dateTime" />
+          <xsd:element name="emisor" type="intf:DatosPersonales1" />
+          <xsd:element name="receptor" type="intf:DatosPersonales1" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="tercero" nillable="true" type="intf:DatosPersonales1" />
+          <xsd:element name="numero" type="xsd:string" />
+          <xsd:element name="serie" type="xsd:string" />
+          <xsd:element name="importe" type="xsd:double" />
+          <xsd:element name="fechaExpedicion" type="xsd:dateTime" />
+          <xsd:element name="organoGestor" type="xsd:string" />
+          <xsd:element name="unidadTramitadora" type="xsd:string" />
+          <xsd:element name="oficinaContable" type="xsd:string" />
+          <xsd:element name="codigoRCF" type="xsd:string" />
+          <xsd:element name="estado" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="codCNAE" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="notificaFacturaNoElectronicaResponse">
+        <xsd:sequence>
+          <xsd:element name="resultado" type="intf:Resultado" />
+          <xsd:element name="facturas" nillable="true" type="intf:NotificaFacturaInfo" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CambiarCodigoRCFResponse">
+        <xsd:sequence>
+          <xsd:element name="resultado" type="intf:Resultado" />
+          <xsd:element name="codigoRCF" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarCodigoRCFResponse">
+        <xsd:sequence>
+          <xsd:element name="resultado" type="intf:Resultado" />
+          <xsd:element name="codigoRCF" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="gestionarSolicitudAnulacionListadoFacturasResponse">
+    <wsdl:part name="return" type="intf:GestionarSolicitudAnulacionListadoFacturasResponse" />
+  </wsdl:message>
+  <wsdl:message name="solicitarNuevasFacturasResponse">
+    <wsdl:part name="return" type="intf:SolicitarNuevasFacturasResponse" />
+  </wsdl:message>
+  <wsdl:message name="consultarEstadosResponse">
+    <wsdl:part name="return" type="intf:ConsultaEstadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="descargarFacturaResponse">
+    <wsdl:part name="return" type="intf:DescargarFacturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="confirmarDescargaFacturaResponse">
+    <wsdl:part name="return" type="intf:ConfirmarDescargaFacturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="consultarListadoFacturasResponse">
+    <wsdl:part name="return" type="intf:ConsultarListadoFacturasResponse" />
+  </wsdl:message>
+  <wsdl:message name="solicitarNuevasFacturasRequest">
+    <wsdl:part name="oficinaContable" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="descargarFacturaRequest">
+    <wsdl:part name="numeroRegistro" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="cambiarCodigoRCFResponse">
+    <wsdl:part name="return" type="intf:CambiarCodigoRCFResponse" />
+  </wsdl:message>
+  <wsdl:message name="cambiarEstadoListadoFacturasResponse">
+    <wsdl:part name="return" type="intf:CambiarEstadoListadoFacturasResponse" />
+  </wsdl:message>
+  <wsdl:message name="gestionarSolicitudAnulacionListadoFacturasRequest">
+    <wsdl:part name="request" type="intf:ArrayOfGestionarSolicitudAnulacionListadoFacturasRequest" />
+  </wsdl:message>
+  <wsdl:message name="confirmarDescargaFacturaRequest">
+    <wsdl:part name="oficinaContable" type="xsd:string" />
+    <wsdl:part name="numeroRegistro" type="xsd:string" />
+    <wsdl:part name="codigoRCF" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="consultarEstadosRequest" />
+  <wsdl:message name="consultarUnidadesResponse">
+    <wsdl:part name="return" type="intf:ConsultarUnidadesResponse" />
+  </wsdl:message>
+  <wsdl:message name="notificaFacturaRequest">
+    <wsdl:part name="request" type="intf:NotificaFacturaRequest" />
+  </wsdl:message>
+  <wsdl:message name="cambiarEstadoFacturaResponse">
+    <wsdl:part name="return" type="intf:CambiarEstadoFacturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="consultarUnidadesRequest" />
+  <wsdl:message name="consultarListadoFacturasRequest">
+    <wsdl:part name="listadoFacturas" type="intf:ArrayOf_xsd_anyType" />
+  </wsdl:message>
+  <wsdl:message name="solicitarNuevasAnulacionesResponse">
+    <wsdl:part name="return" type="intf:SolicitarNuevasAnulacionesResponse" />
+  </wsdl:message>
+  <wsdl:message name="consultarFacturaResponse">
+    <wsdl:part name="return" type="intf:ConsultarFacturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="consultarFacturaRequest">
+    <wsdl:part name="numeroRegistro" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="cambiarEstadoListadoFacturasRequest">
+    <wsdl:part name="request" type="intf:ArrayOfCambiarEstadoListadoFacturaRequest" />
+  </wsdl:message>
+  <wsdl:message name="cambiarCodigoRCFRequest">
+    <wsdl:part name="numeroRegistro" type="xsd:string" />
+    <wsdl:part name="codigoRCF" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="gestionarSolicitudAnulacionFacturaResponse">
+    <wsdl:part name="return" type="intf:GestionarSolicitudAnulacionFacturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="solicitarNuevasAnulacionesRequest">
+    <wsdl:part name="oficinaContable" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="notificaFacturaNoElectronicaRequest">
+    <wsdl:part name="request" type="intf:notificaFacturaNoElectronicaRequest" />
+  </wsdl:message>
+  <wsdl:message name="notificaFacturaNoElectronicaResponse">
+    <wsdl:part name="return" type="intf:notificaFacturaNoElectronicaResponse" />
+  </wsdl:message>
+  <wsdl:message name="gestionarSolicitudAnulacionFacturaRequest">
+    <wsdl:part name="numeroRegistro" type="xsd:string" />
+    <wsdl:part name="oficinaContable" type="xsd:string" />
+    <wsdl:part name="codigo" type="xsd:string" />
+    <wsdl:part name="comentarios" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="cambiarEstadoFacturaRequest">
+    <wsdl:part name="oficinaContable" type="xsd:string" />
+    <wsdl:part name="numeroRegistro" type="xsd:string" />
+    <wsdl:part name="codigo" type="xsd:string" />
+    <wsdl:part name="comentarios" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="consultarCodigoRCFRequest">
+    <wsdl:part name="numeroRegistro" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="notificaFacturaResponse">
+    <wsdl:part name="return" type="intf:NotificaFacturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="consultarCodigoRCFResponse">
+    <wsdl:part name="return" type="intf:ConsultarCodigoRCFResponse" />
+  </wsdl:message>
+  <wsdl:portType name="FacturaSRCFWebServiceProxyPort">
+    <wsdl:operation name="solicitarNuevasFacturas" parameterOrder="oficinaContable">
+      <wsdl:input name="solicitarNuevasFacturasRequest" message="intf:solicitarNuevasFacturasRequest" />
+      <wsdl:output name="solicitarNuevasFacturasResponse" message="intf:solicitarNuevasFacturasResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="solicitarNuevasAnulaciones" parameterOrder="oficinaContable">
+      <wsdl:input name="solicitarNuevasAnulacionesRequest" message="intf:solicitarNuevasAnulacionesRequest" />
+      <wsdl:output name="solicitarNuevasAnulacionesResponse" message="intf:solicitarNuevasAnulacionesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="descargarFactura" parameterOrder="numeroRegistro">
+      <wsdl:input name="descargarFacturaRequest" message="intf:descargarFacturaRequest" />
+      <wsdl:output name="descargarFacturaResponse" message="intf:descargarFacturaResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="confirmarDescargaFactura" parameterOrder="oficinaContable numeroRegistro codigoRCF">
+      <wsdl:input name="confirmarDescargaFacturaRequest" message="intf:confirmarDescargaFacturaRequest" />
+      <wsdl:output name="confirmarDescargaFacturaResponse" message="intf:confirmarDescargaFacturaResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="cambiarEstadoFactura" parameterOrder="oficinaContable numeroRegistro codigo comentarios">
+      <wsdl:input name="cambiarEstadoFacturaRequest" message="intf:cambiarEstadoFacturaRequest" />
+      <wsdl:output name="cambiarEstadoFacturaResponse" message="intf:cambiarEstadoFacturaResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="consultarEstados">
+      <wsdl:input name="consultarEstadosRequest" message="intf:consultarEstadosRequest" />
+      <wsdl:output name="consultarEstadosResponse" message="intf:consultarEstadosResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="consultarUnidades">
+      <wsdl:input name="consultarUnidadesRequest" message="intf:consultarUnidadesRequest" />
+      <wsdl:output name="consultarUnidadesResponse" message="intf:consultarUnidadesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="gestionarSolicitudAnulacionFactura" parameterOrder="numeroRegistro oficinaContable codigo comentarios">
+      <wsdl:input name="gestionarSolicitudAnulacionFacturaRequest" message="intf:gestionarSolicitudAnulacionFacturaRequest" />
+      <wsdl:output name="gestionarSolicitudAnulacionFacturaResponse" message="intf:gestionarSolicitudAnulacionFacturaResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="consultarFactura" parameterOrder="numeroRegistro">
+      <wsdl:input name="consultarFacturaRequest" message="intf:consultarFacturaRequest" />
+      <wsdl:output name="consultarFacturaResponse" message="intf:consultarFacturaResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="consultarListadoFacturas" parameterOrder="listadoFacturas">
+      <wsdl:input name="consultarListadoFacturasRequest" message="intf:consultarListadoFacturasRequest" />
+      <wsdl:output name="consultarListadoFacturasResponse" message="intf:consultarListadoFacturasResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="cambiarEstadoListadoFacturas" parameterOrder="request">
+      <wsdl:input name="cambiarEstadoListadoFacturasRequest" message="intf:cambiarEstadoListadoFacturasRequest" />
+      <wsdl:output name="cambiarEstadoListadoFacturasResponse" message="intf:cambiarEstadoListadoFacturasResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="gestionarSolicitudAnulacionListadoFacturas" parameterOrder="request">
+      <wsdl:input name="gestionarSolicitudAnulacionListadoFacturasRequest" message="intf:gestionarSolicitudAnulacionListadoFacturasRequest" />
+      <wsdl:output name="gestionarSolicitudAnulacionListadoFacturasResponse" message="intf:gestionarSolicitudAnulacionListadoFacturasResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="notificaFactura" parameterOrder="request">
+      <wsdl:input name="notificaFacturaRequest" message="intf:notificaFacturaRequest" />
+      <wsdl:output name="notificaFacturaResponse" message="intf:notificaFacturaResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="notificaFacturaNoElectronica" parameterOrder="request">
+      <wsdl:input name="notificaFacturaNoElectronicaRequest" message="intf:notificaFacturaNoElectronicaRequest" />
+      <wsdl:output name="notificaFacturaNoElectronicaResponse" message="intf:notificaFacturaNoElectronicaResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="cambiarCodigoRCF" parameterOrder="numeroRegistro codigoRCF">
+      <wsdl:input name="cambiarCodigoRCFRequest" message="intf:cambiarCodigoRCFRequest" />
+      <wsdl:output name="cambiarCodigoRCFResponse" message="intf:cambiarCodigoRCFResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="consultarCodigoRCF" parameterOrder="numeroRegistro">
+      <wsdl:input name="consultarCodigoRCFRequest" message="intf:consultarCodigoRCFRequest" />
+      <wsdl:output name="consultarCodigoRCFResponse" message="intf:consultarCodigoRCFResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FacturaSRCFWebServiceProxyPortSoapBinding" type="intf:FacturaSRCFWebServiceProxyPort">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="solicitarNuevasFacturas">
+      <wsdlsoap:operation soapAction="https://webservice.face.gob.es#solicitarNuevasFacturas" />
+      <wsdl:input name="solicitarNuevasFacturasRequest">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="solicitarNuevasFacturasResponse">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="solicitarNuevasAnulaciones">
+      <wsdlsoap:operation soapAction="https://webservice.face.gob.es#solicitarNuevasAnulaciones" />
+      <wsdl:input name="solicitarNuevasAnulacionesRequest">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="solicitarNuevasAnulacionesResponse">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="descargarFactura">
+      <wsdlsoap:operation soapAction="https://webservice.face.gob.es#descargarFactura" />
+      <wsdl:input name="descargarFacturaRequest">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="descargarFacturaResponse">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="confirmarDescargaFactura">
+      <wsdlsoap:operation soapAction="https://webservice.face.gob.es#confirmarDescargaFactura" />
+      <wsdl:input name="confirmarDescargaFacturaRequest">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="confirmarDescargaFacturaResponse">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cambiarEstadoFactura">
+      <wsdlsoap:operation soapAction="https://webservice.face.gob.es#cambiarEstadoFactura" />
+      <wsdl:input name="cambiarEstadoFacturaRequest">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="cambiarEstadoFacturaResponse">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarEstados">
+      <wsdlsoap:operation soapAction="https://webservice.face.gob.es#consultarEstados" />
+      <wsdl:input name="consultarEstadosRequest">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="consultarEstadosResponse">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarUnidades">
+      <wsdlsoap:operation soapAction="https://webservice.face.gob.es#consultarUnidades" />
+      <wsdl:input name="consultarUnidadesRequest">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="consultarUnidadesResponse">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="gestionarSolicitudAnulacionFactura">
+      <wsdlsoap:operation soapAction="https://webservice.face.gob.es#gestionarSolicitudAnulacionFactura" />
+      <wsdl:input name="gestionarSolicitudAnulacionFacturaRequest">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="gestionarSolicitudAnulacionFacturaResponse">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarFactura">
+      <wsdlsoap:operation soapAction="https://webservice.face.gob.es#consultarFactura" />
+      <wsdl:input name="consultarFacturaRequest">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="consultarFacturaResponse">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarListadoFacturas">
+      <wsdlsoap:operation soapAction="https://webservice.face.gob.es#consultarListadoFacturas" />
+      <wsdl:input name="consultarListadoFacturasRequest">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="consultarListadoFacturasResponse">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cambiarEstadoListadoFacturas">
+      <wsdlsoap:operation soapAction="https://webservice.face.gob.es#cambiarEstadoListadoFacturas" />
+      <wsdl:input name="cambiarEstadoListadoFacturasRequest">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="cambiarEstadoListadoFacturasResponse">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="gestionarSolicitudAnulacionListadoFacturas">
+      <wsdlsoap:operation soapAction="https://webservice.face.gob.es#gestionarSolicitudAnulacionListadoFacturas" />
+      <wsdl:input name="gestionarSolicitudAnulacionListadoFacturasRequest">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="gestionarSolicitudAnulacionListadoFacturasResponse">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="notificaFactura">
+      <wsdlsoap:operation soapAction="https://webservice.face.gob.es#notificaFactura" />
+      <wsdl:input name="notificaFacturaRequest">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="notificaFacturaResponse">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="notificaFacturaNoElectronica">
+      <wsdlsoap:operation soapAction="https://webservice.face.gob.es#notificaFacturaNoElectronica" />
+      <wsdl:input name="notificaFacturaNoElectronicaRequest">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="notificaFacturaNoElectronicaResponse">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cambiarCodigoRCF">
+      <wsdlsoap:operation soapAction="https://webservice.face.gob.es#cambiarCodigoRCF" />
+      <wsdl:input name="cambiarCodigoRCFRequest">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="cambiarCodigoRCFResponse">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarCodigoRCF">
+      <wsdlsoap:operation soapAction="https://webservice.face.gob.es#consultarCodigoRCF" />
+      <wsdl:input name="consultarCodigoRCFRequest">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="consultarCodigoRCFResponse">
+        <wsdlsoap:body use="encoded" namespace="https://webservice.face.gob.es" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FacturaSRCFWebServiceProxyService">
+    <wsdl:port name="FacturaSRCFWebServiceProxyPort" binding="intf:FacturaSRCFWebServiceProxyPortSoapBinding">
+      <wsdlsoap:address location="http://econtabilidad-pre.sedelectronica.es/conta2ref/facturasrcf" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
